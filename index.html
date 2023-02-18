@@ -21,8 +21,11 @@
             </form>
         </div>
         <div id="nav-bar">
+            <input type="radio" name="save-load-buttons" value="save" id="save-button" onclick="save(this)"><label for="save-button"><span class="material-symbols-outlined">save</span></label>
+            <input type="radio" name="save-load-buttons" value="load" id="load-button" onclick="load(this)"><label for="load-button"><span class="material-symbols-outlined">upload</span></label>
+
             <input type="radio" name="undo-redo-buttons" value="undo" id="undo-button" onclick="undo(this)"><label for="undo-button"><span class="material-symbols-outlined">undo</span></label>
-            <input type="radio" name="undo-redo-buttons" value="redo" id="redo-button" onclick="redo(this)"><label for="redo-button"><span class="material-symbols-outlined" id="material-symbols-filled">redo</span></label>
+            <input type="radio" name="undo-redo-buttons" value="redo" id="redo-button" onclick="redo(this)"><label for="redo-button"><span class="material-symbols-outlined">redo</span></label>
 
             <input type="radio" name="nav-bar-buttons" value="circle" id="circle-button" onclick="changeDrawMode(this)"><label for="circle-button"><span class="material-symbols-outlined">radio_button_unchecked</span></label>
             <input type="radio" name="nav-bar-buttons" value="circle" id="circle-filled-button" onclick="changeDrawMode(this)"><label for="circle-filled-button"><span class="material-symbols-outlined" id="material-symbols-filled">radio_button_unchecked</span></label>

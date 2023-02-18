@@ -6,8 +6,8 @@ window.drawio = {
     selectedLineWidth: 1,
     selectedStrokeColor: 'black',
     selectedFillColor: 'black',
-    canvas: document.getElementById('drawingCanvas'),
-    ctx: document.getElementById('drawingCanvas').getContext('2d'),
+    canvas: undefined,
+    ctx: undefined,
     selectedElement: null,
     moveElement: false,
     availableShapes: {
@@ -58,6 +58,20 @@ function redo() {
     }
 }
 
+function save() {
+    localStorage.setItem('shapes', JSON.stringify(drawio.shapes));
+    console.log("When saving:");
+    console.log(drawio.shapes);
+}
+
+function load() {
+    let shapes = localStorage.getItem('shapes');
+    console.log("When loading: ");
+    drawio.shapes = JSON.parse(shapes);
+    console.log(drawio.shapes);
+    drawCanvas();
+}
+
 function drawCanvas() {
     drawio.ctx.clearRect(0,0,drawio.canvas.width, drawio.canvas.height);
     if (drawio.selectedElement) {
@@ -69,6 +83,8 @@ function drawCanvas() {
 }
 
 $(function () {
+    drawio.canvas = document.getElementById('drawingCanvas');
+    drawio.ctx = document.getElementById('drawingCanvas').getContext('2d');
     $("#drawingCanvas").on('mousedown', function (mouseEvent) {
         if (drawio.hoveredElement == null) {
             switch (drawio.selectedShape) {

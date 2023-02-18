@@ -37,6 +37,7 @@ body {
 /* CODE FROM https://stackoverflow.com/questions/50310426/selecting-only-one-button-in-a-set */
 input[type='radio'][name=nav-bar-buttons] { display:none; }
 input[type='radio'][name=undo-redo-buttons] { display:none; }
+input[type='radio'][name=save-load-buttons] { display:none; }
 label {
   display:inline-block;
   padding:3px;
