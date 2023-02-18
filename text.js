@@ -19,7 +19,7 @@ $(function () {
     // Defining dialog globally so it can be accessed 
     dialog = $( "#dialog-form" ).dialog({
         autoOpen: false,
-        height: 400,
+        height: 250,
         width: 350,
         modal: true,
         buttons: {

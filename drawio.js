@@ -104,7 +104,6 @@ $(function () {
             drawCanvas();
             drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
         }
-        // If I switch elements it doesn't detect them anymore???
         else if (drawio.moveElement) {
             // move element on drag
             drawCanvas();

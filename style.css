@@ -1,6 +1,7 @@
 body {
     margin:0px;
 }
+
 #nav-bar {
     background-color: lightgray;
     height:20px;
@@ -26,6 +27,13 @@ body {
   'opsz' 48
 }
 
+#dialog-form label {
+  background-color: white;
+  border: none;
+  width: 60px;
+  justify-content: start;
+}
+
 /* CODE FROM https://stackoverflow.com/questions/50310426/selecting-only-one-button-in-a-set */
 input[type='radio'][name=nav-bar-buttons] { display:none; }
 input[type='radio'][name=undo-redo-buttons] { display:none; }
@@ -40,6 +48,5 @@ label {
   display:flex;
   align-items: center;
   justify-content: center;
-  text-align:center;
 }
 input[type='radio'][name=nav-bar-buttons]:checked + label { background-color:#a0a0a0; }
