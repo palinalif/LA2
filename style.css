@@ -1,0 +1,45 @@
+body {
+    margin:0px;
+}
+#nav-bar {
+    background-color: lightgray;
+    height:20px;
+    padding:10px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#material-symbols-filled {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+/* CODE FROM https://stackoverflow.com/questions/50310426/selecting-only-one-button-in-a-set */
+input[type='radio'][name=nav-bar-buttons] { display:none; }
+input[type='radio'][name=undo-redo-buttons] { display:none; }
+label {
+  display:inline-block;
+  padding:3px;
+  border:1px solid #e0e0e0;
+  border-radius:3px;
+  background-color:#F0F0F0;
+  width:30px;
+  height:30px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+}
+input[type='radio'][name=nav-bar-buttons]:checked + label { background-color:#a0a0a0; }

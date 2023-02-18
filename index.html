@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <title>Drawing time!</title>
+    </head>
+    <body>
+        <div id="dialog-form" title="Create new user">           
+            <form>
+              <fieldset>
+                <label for="font">Font</label>
+                <select name="font" id="font"><!-- Options are added in dropdowns.js --></select>
+                <label for="size">Font size</label>
+                <select name="size" id="size"></select>
+                <label for="text">Text</label>
+                <input type="text" name="text" id="text" class="text ui-widget-content ui-corner-all">
+              </fieldset>
+            </form>
+        </div>
+        <div id="nav-bar">
+            <input type="radio" name="undo-redo-buttons" value="undo" id="undo-button" onclick="undo(this)"><label for="undo-button"><span class="material-symbols-outlined">undo</span></label>
+            <input type="radio" name="undo-redo-buttons" value="redo" id="redo-button" onclick="redo(this)"><label for="redo-button"><span class="material-symbols-outlined" id="material-symbols-filled">redo</span></label>
+
+            <input type="radio" name="nav-bar-buttons" value="circle" id="circle-button" onclick="changeDrawMode(this)"><label for="circle-button"><span class="material-symbols-outlined">radio_button_unchecked</span></label>
+            <input type="radio" name="nav-bar-buttons" value="circle" id="circle-filled-button" onclick="changeDrawMode(this)"><label for="circle-filled-button"><span class="material-symbols-outlined" id="material-symbols-filled">radio_button_unchecked</span></label>
+            <input type="radio" name="nav-bar-buttons" value="rectangle" id="rectangle-button" onclick="changeDrawMode(this)"><label for="rectangle-button"><span class="material-symbols-outlined">crop_square</span></label>
+            <input type="radio" name="nav-bar-buttons" value="rectangle" id="rectangle-filled-button" onclick="changeDrawMode(this)"><label for="rectangle-filled-button"><span class="material-symbols-outlined" id="material-symbols-filled">crop_square</span></label>
+            <input type="radio" name="nav-bar-buttons" value="line" id="line-button" onclick="changeDrawMode(this)"><label for="line-button"><span class="material-symbols-outlined">
+                horizontal_rule
+                </span></label>
+            <input type="radio" name="nav-bar-buttons" value="text" id="text-button" onclick="changeDrawMode(this)"><label for="text-button"><span class="material-symbols-outlined">
+                title
+                </span></label>
+            <input type="radio" name="nav-bar-buttons" value="pen" id="draw-button" checked="checked" onclick="changeDrawMode(this)"><label for="draw-button"><span class="material-symbols-outlined">
+                draw
+                </span></label>
+            <p>Line width:</p>
+            <select id="lineWidth" name="lineWidth" onchange="changeLineWidth(this)"></select>
+            <p>Stroke color:</p>
+            <select id="strokeColor" name="strokeColor" onchange="changeStrokeColor(this)" style="background-color: black;"></select>
+            <p>Fill color:</p>
+            <select id="fillColor" name="fillColor" onchange="changeFillColor(this)" style="background-color: black"></select>
+        </div>
+        <canvas id="drawingCanvas" width="720" height="720" style="border: 1px solid black;">
+        </canvas>
+    </body>
+    <script src="drawio.js"></script>
+    <script src="shapes.js"></script>
+    <script src="text.js"></script>
+    <script src="dropdowns.js"></script>
+</html>
