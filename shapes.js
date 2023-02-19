@@ -27,6 +27,7 @@ Shape.prototype.movePosition = function (x,y) {}
 // RECTANGLE
 function Rectangle(position, width, height) {
     Shape.call(this, position);
+    this.shapeType = drawio.availableShapes.RECTANGLE;
     this.width = width;
     this.height = height;
 }
@@ -61,6 +62,7 @@ Rectangle.prototype.movePosition = function(x,y) {
 // LINE
 function Line(startPosition, endPosition) {
     Shape.call(this, startPosition);
+    this.shapeType = drawio.availableShapes.LINE;
     this.endPosition = endPosition;
 }
 Line.prototype = Object.create(Shape.prototype);
@@ -97,9 +99,13 @@ Line.prototype.movePosition = function (x,y) {
 }
 
 // PEN
-function Pen(position) {
+function Pen(position, points=[]) {
     Shape.call(this, position);
-    this.points = [position];
+    this.shapeType = drawio.availableShapes.PEN;
+    this.points = points;
+    if (points == []) {
+        this.points.push(position);
+    }
 }
 Pen.prototype = Object.create(Shape.prototype);
 Pen.prototype.constructor(Pen);
@@ -142,6 +148,7 @@ Pen.prototype.movePosition = function (x,y) {
 // CIRCLE
 function Circle(position, width, height) {
     Shape.call(this, position);
+    this.shapeType = drawio.availableShapes.CIRCLE;
     this.width = width;
     this.height = height;
 }
@@ -200,6 +207,7 @@ Circle.prototype.movePosition = function (x,y) {
 // TEXT
 function Text(position, textOptions) {
     Shape.call(this, position);
+    this.shapeType = drawio.availableShapes.TEXT;
     this.position = position;
     this.text = textOptions.text;
     this.font = textOptions.font;
@@ -216,7 +224,6 @@ Text.prototype.render = function () {
     drawio.ctx.fillText(this.text, this.position.x, this.position.y);
 }
 Text.prototype.mouseOver = function (x,y) {
-    console.log("aaaa");
     if (x >= this.position.x && x <= (this.position.x+this.width) && y <= this.position.y && y >= (this.position.y-this.height)) {
         return true;
     }

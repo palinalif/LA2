@@ -60,15 +60,45 @@ function redo() {
 
 function save() {
     localStorage.setItem('shapes', JSON.stringify(drawio.shapes));
-    console.log("When saving:");
-    console.log(drawio.shapes);
 }
 
 function load() {
-    let shapes = localStorage.getItem('shapes');
-    console.log("When loading: ");
-    drawio.shapes = JSON.parse(shapes);
-    console.log(drawio.shapes);
+    drawio.shapes = [];
+    drawio.redoQueue = [];
+    let shapes = JSON.parse(localStorage.getItem('shapes'));
+    shapes.forEach(shape => {
+        let newShape;
+        switch (shape.shapeType) {
+            case drawio.availableShapes.RECTANGLE:
+                newShape = new Rectangle(shape.position, shape.width, shape.height);
+                break;
+            case drawio.availableShapes.CIRCLE:
+                newShape = new Circle(shape.position, shape.width, shape.height);
+                break;
+            case drawio.availableShapes.LINE:
+                newShape = new Line(shape.position, shape.endPosition);
+                break;
+            case drawio.availableShapes.PEN:
+                newShape = new Pen(shape.position, shape.points);
+                break;
+            case drawio.availableShapes.TEXT:
+                let textOptions = {
+                    text: shape.text,
+                    font: shape.font,
+                    fontSize: shape.fontSize
+                }
+                newShape = new Text(shape.position, textOptions);
+                break;
+            default:
+                break;
+        }
+        // Setting universal settings here so we don't repeat it for every shape
+        newShape.strokeWidth = shape.strokeWidth;
+        newShape.strokeColor = shape.strokeColor;
+        newShape.fillColor = shape.fillColor;
+        newShape.shapeFilled = shape.shapeFilled;
+        drawio.shapes.push(newShape);
+    });
     drawCanvas();
 }
 
