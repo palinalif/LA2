@@ -99,13 +99,10 @@ Line.prototype.movePosition = function (x,y) {
 }
 
 // PEN
-function Pen(position, points=[]) {
+function Pen(position) {
     Shape.call(this, position);
     this.shapeType = drawio.availableShapes.PEN;
-    this.points = points;
-    if (points == []) {
-        this.points.push(position);
-    }
+    this.points = [position];
 }
 Pen.prototype = Object.create(Shape.prototype);
 Pen.prototype.constructor(Pen);

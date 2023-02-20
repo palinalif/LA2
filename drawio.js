@@ -8,6 +8,7 @@ window.drawio = {
     selectedFillColor: 'black',
     canvas: undefined,
     ctx: undefined,
+    hoveredElement: null,
     selectedElement: null,
     moveElement: false,
     availableShapes: {
@@ -79,7 +80,8 @@ function load() {
                 newShape = new Line(shape.position, shape.endPosition);
                 break;
             case drawio.availableShapes.PEN:
-                newShape = new Pen(shape.position, shape.points);
+                newShape = new Pen(shape.position);
+                newShape.points = shape.points;
                 break;
             case drawio.availableShapes.TEXT:
                 let textOptions = {
@@ -146,18 +148,18 @@ $(function () {
     });
 
     $('#drawingCanvas').on('mousemove', function (mouseEvent) {
+        drawCanvas();
         if (drawio.selectedElement) {
-            drawCanvas();
             drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
         }
         else if (drawio.moveElement) {
             // move element on drag
-            drawCanvas();
             drawio.hoveredElement.movePosition(mouseEvent.offsetX, mouseEvent.offsetY);
         }
         else {
             // if the mouse hovers over an object, change the mouse cursor to the one with two arrows
             drawio.shapes.forEach(shape => {
+                console.log(shape);
                 if (shape.mouseOver(mouseEvent.offsetX, mouseEvent.offsetY)) {
                     drawio.canvas.style.cursor = "move";
                     drawio.hoveredElement = shape;
